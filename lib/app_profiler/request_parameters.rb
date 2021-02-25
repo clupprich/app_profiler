@@ -63,20 +63,27 @@ module AppProfiler
     end
 
     def profile_header_param(name)
-      query_parser.parse_nested_query(header(profile_header), ";")[name]
-    rescue Rack::QueryParser::ParameterTypeError, RangeError
+    #   query_parser.parse_nested_query(header(profile_header), ";")[name]
+    # rescue Rack::QueryParser::ParameterTypeError, RangeError
+    #   nil
+      Rack::Utils.parse_query(header(profile_header), ";")[name]
+    rescue
       nil
     end
 
     def query_param(name)
+    #   @request.GET[name]
+    # rescue Rack::QueryParser::ParameterTypeError, RangeError
+    #   nil
       @request.GET[name]
-    rescue Rack::QueryParser::ParameterTypeError, RangeError
+    rescue
       nil
     end
 
     def header(name)
-      return unless @request.has_header?(name)
-      @request.get_header(name)
+      # return unless @request.has_header?(name)
+      # @request.get_header(name)
+      @request.env[name]
     end
 
     def query_parser
