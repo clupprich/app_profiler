@@ -25,9 +25,9 @@ Gem::Specification.new do |spec|
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
-  spec.add_dependency("activesupport", ">= 5.2")
-  spec.add_dependency("railties", ">= 5.2")
-  spec.add_dependency("rack")
+  spec.add_dependency("activesupport", ">= 3.2")
+  spec.add_dependency("railties", ">= 3.2")
+  spec.add_dependency("rack", "~> 1.4")
   spec.add_dependency("stackprof", "~> 0.2")
 
   spec.add_development_dependency("bundler")
