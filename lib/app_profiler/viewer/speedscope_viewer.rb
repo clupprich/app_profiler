@@ -3,7 +3,24 @@
 module AppProfiler
   module Viewer
     class SpeedscopeViewer < BaseViewer
-      mattr_accessor :yarn_setup, default: false
+      # mattr_accessor :yarn_setup, default: false
+      def self.yarn_setup
+        @yarn_setup
+      end
+
+      def yarn_setup
+        self.class.yarn_setup
+      end
+
+      def self.yarn_setup=(value)
+        @yarn_setup = value
+      end
+
+      def yarn_setup=(value)
+        self.class.yarn_setup = value
+      end
+
+      self.yarn_setup = false
 
       class YarnError < StandardError; end
 

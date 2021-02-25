@@ -7,8 +7,43 @@ require "app_profiler/middleware/view_action"
 
 module AppProfiler
   class Middleware
-    class_attribute :action,   default: UploadAction
-    class_attribute :disabled, default: false
+    # class_attribute :action, default: UploadAction
+    def self.action
+      @action
+    end
+
+    def action
+      self.class.action
+    end
+
+    def self.action=(value)
+      @action = value
+    end
+
+    def action=(value)
+      self.class.action = value
+    end
+
+    self.action = UploadAction
+
+    # class_attribute :disabled, default: false
+    def self.disabled
+      @disabled
+    end
+
+    def disabled
+      self.class.disabled
+    end
+
+    def self.disabled=(value)
+      @disabled = value
+    end
+
+    def disabled=(value)
+      self.class.disabled = value
+    end
+
+    self.disabled = false
 
     def initialize(app)
       @app = app
